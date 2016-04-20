@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#echo "{\"version\":1}"
+echo "{ \"version\": 1, \"click_events\": true }"
+echo "[[],"
+conky -d -c $HOME/.conkyrc
+
+IFS="}"
+while read;do
+  IFS=" "
+  if [ ${REPLY:0:1} == "," ];then
+    NAME=`echo ${REPLY:1} | jq .name`
+    BTN=`echo ${REPLY:1} | jq .button`
+  else
+    NAME=`echo $REPLY | jq .name`
+    BTN=`echo $REPLY | jq .button`
+  fi
+  X=$(($X-50))
+  case "${NAME}" in
+    \"music\")
+      if [ $BTN -eq 1 ];then
+        playerctl -p spotify play-pause
+      elif [ $BTN -eq 3 ];then
+        playerctl -p spotify next
+      fi
+      ;;
+    \"volume\")
+      if [ $BTN -eq 4 ];then
+        amixer -c1 set Master 1+ -q
+      elif [ $BTN -eq 5 ];then
+        amixer -c1 set Master 1- -q
+      fi 
+      ;;
+    *)
+      ;;
+  esac
+  IFS="}"
+done
