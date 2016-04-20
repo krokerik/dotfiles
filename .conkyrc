@@ -1,0 +1,29 @@
+background           no
+out_to_console 		 yes
+out_to_x             no
+update_interval      1
+total_run_times	     0
+short_units          yes
+pad_percents         3
+override_utf8_locale yes
+
+# Stuff after 'TEXT' will be formatted on screen
+TEXT
+#  { "full_text" : "" , "color" : "" },
+#  { "full_text" : "${fs_free} /${fs_size}" , "color" : "\#ffffff" },
+# JSON for i3bar
+ [
+	${if_running spotify}
+		{"full_text": "${exec sh /home/krokerik/scripts/music.sh}"
+		, "color" : "\#558A20", "name": "music"},
+	${endif}
+  { "full_text" : "RAM ${memperc}%" , "color" :
+    ${if_match ${memperc}<90}"\#c8c5c1"${else}"\#ff0000"${endif} },
+  { "full_text" : "${fs_free} /${fs_size}" , "color" : "\#c8c5c1" },
+  { "full_text" : "${execi 5 sh /home/krokerik/scripts/battery.sh}" , "color" : "\#c8c5c1" },
+  { "full_text" : "♪ ${exec amixer -c 1 get Master | grep Mono: | cut -d " " -f6 | sed "s/[^0-9]//g"}%" , "color" : "\#c8c5c1", "name": "volume" },
+  { "full_text" : "CPU ${cpu}%" , "color" :
+    ${if_match ${cpu}<80}"\#c8c5c1"${else}"\#7a3225"${endif} },
+  { "full_text" : "Umeå ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ ESNU temperature}°C ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ ESNU cloud_cover}" , "color" : 
+    ${if_match ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ ESNU temperature}<0}"\#319170"${else}"\#c8c5c1"${endif} },
+{ "full_text" : "${time %c}" , "color" : "\#c8c5c1" }],
