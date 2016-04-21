@@ -1,25 +1,17 @@
 #!/usr/bin/env bash
 
-SONG=$(playerctl -p spotify metadata xesam:title)
-ARTIST=$(playerctl -p spotify metadata xesam:artist)
+SONG=$(dbus-send --print-reply --session --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'Metadata' | awk '/xesam:title/{getline; print $NF}' | awk -F'\"' '{print $2}'
+ARTIST=$(dbus-send --print-reply --session --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'Metadata' | awk '/xesam:artist/{getline; getline; print $NF}' | awk -F'\"' '{print $2}'
 OUTPUT=""
 ICON=""
-
-if [ -n "$(playerctl -p spotify status | grep -E 'Playing')" ]; then
-    ICON="25b6"
-elif [ -n "$(playerctl -p spotify status | grep -E 'Paused')" ]; then
-    ICON="2161"
-else
-    ICON="2161"
-fi
 
 if [ -n "$SONG" ]; then
     OUTPUT="$ARTIST - $SONG"
 else
-    OUTPUT="-None-"
+    OUTPUT="None"
 fi
 
-echo "\u${ICON} ${OUTPUT} "
+echo "${OUTPUT}"
 
 exit 0
 
