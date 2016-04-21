@@ -11,11 +11,11 @@ do
         echo "$line" || exit 1
     elif [[ "$line" == ,* ]]
     then
-        music=`sh ~/scripts/music.sh`
+        music=`sh ~/scripts/music-dbus.sh`
         line=`echo "$line"|cut -c 3-`
         echo ",[{\"name\":\"spotify\",\"full_text\":\"$music\"},$line" || exit 1
     else
-        music=`sh ~/scripts/music.sh`
+        music=`sh ~/scripts/music-dbus.sh`
         if [ "$music" == "" ]
         then
             echo "$line"
