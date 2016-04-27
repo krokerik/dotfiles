@@ -81,6 +81,7 @@ assign [class="Sublime_text"] 2:code
 assign [class="jetbrains-idea-ce"] 2:code
 assign [class="^Gedit$" instance="^gedit$"] 2:code
 assign [class="Thunderbird"] 3:email
+assign [class="Icedove"] 3:email
 assign [class="^Spotify$" instance="^spotify$"] 4:spotify
 assign [class="Nautilus"] 5:files
 assign [class="Evince"] 6:pdf
@@ -162,8 +163,8 @@ bindsym XF86AudioStop exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2
 bindsym XF86AudioNext exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 bindsym XF86AudioPrev exec dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-bindsym XF86AudioRaiseVolume exec amixer -c 0 -- sset Master playback 5dB+
-bindsym XF86AudioLowerVolume exec amixer -c 0 -- sset Master playback 5dB-
+bindsym XF86AudioRaiseVolume exec amixer -c 0 -- sset Master playback 1dB+
+bindsym XF86AudioLowerVolume exec amixer -c 0 -- sset Master playback 1dB-
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -199,6 +200,13 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Fast Resize
+
+bindsym $mod+Ctrl+Right resize shrink width 1 px or 1 ppt
+bindsym $mod+Ctrl+Up resize grow height 1 px or 1 ppt
+bindsym $mod+Ctrl+Down resize shrink height 1 px or 1 ppt
+bindsym $mod+Ctrl+Left resize grow width 1 px or 1 ppt
+
 # Window Colours
 # class                 border     backgr.    text indicator
 client.focused          $darkblack $darkblack $red $black
@@ -209,8 +217,9 @@ client.urgent           $darkblack $darkred $darkwhite $black
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command sh ~/scripts/i3status-wrapper.sh	
-        tray_output primary
+    status_command sh ~/scripts/i3status-wrapper.sh	
+    tray_output primary
+    font pango:monospace 8
 	position top
 
 }
