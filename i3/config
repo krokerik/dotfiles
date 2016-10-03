@@ -27,7 +27,7 @@ font pango:DejaVu Sans Mono 8
 # clear in small sizes. However, its unicode glyph coverage is limited, the old
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
-
+new_window normal 0 px
 # Colours
 set $transparent #00000000
 
@@ -201,9 +201,17 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Fast Resize
+
+bindsym $mod+Ctrl+Right resize shrink width 1 px or 1 ppt
+bindsym $mod+Ctrl+Up resize grow height 1 px or 1 ppt
+bindsym $mod+Ctrl+Down resize shrink height 1 px or 1 ppt
+bindsym $mod+Ctrl+Left resize grow width 1 px or 1 ppt
+
+
 # Window Colours
 # class                 border     backgr.    text indicator
-client.focused          $darkblack $darkblack $red $black
+client.focused          $transparent $darkblack $red $black
 client.focused_inactive $darkblack $darkblack $darkred $black
 client.unfocused        $darkblack $black $darkwhite $black
 client.urgent           $darkblack $darkred $darkwhite $black
