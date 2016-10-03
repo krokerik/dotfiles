@@ -1,2 +1,2 @@
-seeyouspacecowboy | lolcat
+~/scripts/seeyouspacecowboy | lolcat
 sleep 2
