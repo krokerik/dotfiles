@@ -4,3 +4,4 @@ cp -f .gitconfig ~/.gitconfig
 cp -f i3/config ~/.config/i3/config
 cp -f i3/.i3status.conf ~/.i3status.conf
 cp -f scripts/* ~/scripts
+cp -f .zlogout ~/.zlogout
