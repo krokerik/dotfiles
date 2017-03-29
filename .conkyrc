@@ -1,5 +1,5 @@
 background           no
-out_to_console 		 yes
+out_to_console       yes
 out_to_x             no
 update_interval      1
 total_run_times	     0
@@ -24,6 +24,5 @@ TEXT
   { "full_text" : "♪ ${exec amixer -c 1 get Master | grep Mono: | cut -d " " -f6 | sed "s/[^0-9]//g"}%" , "color" : "\#c8c5c1", "name": "volume" },
   { "full_text" : "CPU ${cpu}%" , "color" :
     ${if_match ${cpu}<80}"\#c8c5c1"${else}"\#7a3225"${endif} },
-  { "full_text" : "Umeå ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ ESNU temperature}°C ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ ESNU cloud_cover}" , "color" : 
-    ${if_match ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ ESNU temperature}<0}"\#319170"${else}"\#c8c5c1"${endif} },
-{ "full_text" : "${time %c}" , "color" : "\#c8c5c1" }],
+  { "full_text" : "Umeå ${execi 30 perl /opt/umu-temp}°C" , "color" : ${if_match ${execi 30 perl /opt/umu-temp}<=0} "\#319170"${else}"\#c8c5c1"${endif} },
+  { "full_text" : "${time %c}" , "color" : "\#c8c5c1" }],
