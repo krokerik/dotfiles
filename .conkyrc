@@ -21,8 +21,8 @@ TEXT
     ${if_match ${memperc}<90}"\#c8c5c1"${else}"\#ff0000"${endif} },
   { "full_text" : "${fs_free} /${fs_size}" , "color" : "\#c8c5c1" },
   { "full_text" : "${execi 5 sh /home/krokerik/scripts/battery.sh}" , "color" : "\#c8c5c1" },
-  { "full_text" : "♪ ${exec amixer -c 1 get Master | grep Mono: | cut -d " " -f6 | sed "s/[^0-9]//g"}%" , "color" : "\#c8c5c1", "name": "volume" },
+  { "full_text" : "${if_match "${exec amixer -c 1 get Master | grep Mono: | cut -d " " -f8 | sed "s/[^a-z]//g"}"=="off"}${else}${if_match ${exec amixer -c 1 get Master | grep Mono: | cut -d " " -f6 | sed "s/[^0-9]//g"}==0}${else}${if_match ${exec amixer -c 1 get Master | grep Mono: | cut -d " " -f6 | sed "s/[^0-9]//g"}<=50}${else}${endif}${endif}${endif} ${exec amixer -c 1 get Master | grep Mono: | cut -d " " -f6 | sed "s/[^0-9]//g"}%" , "color" : "\#c8c5c1", "name": "volume" },
   { "full_text" : "CPU ${cpu}%" , "color" :
     ${if_match ${cpu}<80}"\#c8c5c1"${else}"\#7a3225"${endif} },
-  { "full_text" : "Umeå ${execi 30 perl /opt/umu-temp}°C" , "color" : ${if_match ${execi 30 perl /opt/umu-temp}<=0} "\#319170"${else}"\#c8c5c1"${endif} },
+  { "full_text" : "Umeå ${texeci 30 perl /opt/umu-temp}°C" , "color" : ${if_match ${texeci 30 perl /opt/umu-temp}<=0} "\#319170"${else}"\#c8c5c1"${endif} },
   { "full_text" : "${time %c}" , "color" : "\#c8c5c1" }],

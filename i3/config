@@ -18,7 +18,7 @@ force_xinerama yes
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:System San Francisco Display, Font Awesome 5 Brands, FontAwesome 9
+font pango:System San Francisco Display, Font Awesome 5 Brands, Font Awesome 5 Free, FontAwesome 9
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1 
@@ -181,13 +181,13 @@ bindsym $mod+a focus parent
 # Media controls
 bindsym --whole-window $mod+Button4 exec /etc/acpi/volup.sh
 bindsym --whole-window $mod+Button5 exec /etc/acpi/voldn.sh
-bindsym $mod+period exec /etc/acpi/volup.sh
+bindsym $mod+period exec /etc/acpi/volup.sh..
 bindsym $mod+comma exec /etc/acpi/voldn.sh
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle -q # mute sound
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

@@ -26,9 +26,9 @@ while read;do
       ;;
     \"volume\")
       if [ $BTN -eq 4 ];then
-        amixer -D pulse set Master 1+ -q
+        amixer -c 1 set Master 1+ -q
       elif [ $BTN -eq 5 ];then
-        amixer -D pulse set Master 1- -q
+        amixer -c 1 set Master 1- -q
       elif [ $BTN -eq 1 ];then
         amixer -D pulse set Master 1+ toggle -q
       fi
