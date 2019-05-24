@@ -33,6 +33,11 @@ while read;do
         amixer -D pulse set Master 1+ toggle -q
       fi
       ;;
+    \"wifi\")
+      if [ $BTN -eq 1 ];then
+        wicd-client -an > /dev/null 2> /dev/null &
+      fi
+      ;;
     *)
       ;;
   esac

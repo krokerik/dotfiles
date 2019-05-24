@@ -25,4 +25,5 @@ TEXT
   { "full_text" : "CPU ${cpu}%" , "color" :
     ${if_match ${cpu}<80}"\#c8c5c1"${else}"\#7a3225"${endif} },
   { "full_text" : "Umeå ${texeci 30 perl /opt/umu-temp}°C" , "color" : ${if_match ${texeci 30 perl /opt/umu-temp}<=0} "\#319170"${else}"\#c8c5c1"${endif} },
+  { "full_text" : "${scroll 13 3 ${wireless_essid}}" , "color" : "\#c8c5c1" , "name" : "wifi"},
   { "full_text" : "${time %c}" , "color" : "\#c8c5c1" }],

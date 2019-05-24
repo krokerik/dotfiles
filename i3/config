@@ -101,6 +101,7 @@ assign [class="jetbrains-idea-ce"] $ws7
 assign [class="jetbrains-studio"] $ws7
 for_window [class="jetbrains-studio"] move to workspace $ws7
 assign [class="Qbittorrent"] $ws10
+for_window [class="Wicd-client.py" instance="wicd-client.py"] floating enable
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
