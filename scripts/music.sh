@@ -6,9 +6,9 @@ STATUS=$(dbus-send --print-reply --session --dest=org.mpris.MediaPlayer2.spotify
 
 ICON=""
 if [ -n "$(dbus-send --print-reply --session --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'PlaybackStatus' | cut -d '"' -f2 | grep -E "Playing")" ]; then
-	ICON="25b6"
+	ICON="f04b"
 else
-	ICON="2161"
+	ICON="f04c"
 fi
 if [ -n "$SONG" ]; then
     echo "\u${ICON} $ARTIST - $SONG"
