@@ -84,8 +84,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias home-server='ssh home-external -p 1399'
 alias sync='rsync -r -e 'ssh -p 1399' --progress qbtuser@home-external:Downloads ~'
-
-if which tmux >/dev/null 2>&1; then
-    #if not inside a tmux session, and if no session is started, start a new session
-    test -z "$TMUX" && (tmux attach || tmux new-session)
-fi
+path+=('/usr/local/bin')
+export PATH
