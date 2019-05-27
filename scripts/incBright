@@ -1,0 +1,9 @@
+#!/bin/bash
+cur="$(cat /sys/class/backlight/radeon_bl0/brightness)"
+max="$(cat /sys/class/backlight/radeon_bl0/max_brightness)"
+let cur+=10
+if [ "$cur" -gt "$max" ]
+then
+  let cur=max
+fi
+echo "$cur" > /sys/class/backlight/radeon_bl0/brightness
