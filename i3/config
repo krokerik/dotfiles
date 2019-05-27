@@ -18,11 +18,12 @@ force_xinerama yes
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:System San Francisco Display, Font Awesome 5 Brands, Font Awesome 5 Free, FontAwesome 9
+# font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 7
+# font pango:monospace, Font Awesome 5 Brands, Font Awesome 5 Free, FontAwesome 9
 
 # Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1 
-# font -*-*-*-*-*-*-10-*-*-*-*-*-iso10646-*
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1,Font Awesome 5 Free 9
+font pango:Segoe UI Semibold, Font Awesome 5 Free, Font Awesome 5 Brands, FontAwesome 8
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, its unicode glyph coverage is limited, the old
 # X core fonts rendering does not support right-to-left and this being a bitmap
@@ -96,6 +97,7 @@ for_window [class="Spotify"] move to workspace $ws4
 # assign [class="Steam"] $ws5
 assign [class="discord"] $ws5
 assign [class="Evince"] $ws6
+assign [class="calibre"] $ws6
 assign [class="Sublime_text"] $ws7
 assign [class="jetbrains-idea-ce"] $ws7
 assign [class="jetbrains-studio"] $ws7
@@ -118,6 +120,8 @@ bindsym $mod+Shift+q kill
 # kill window with middle mouse
 bindsym --release button2 kill
 
+# start nautilus explorer
+bindsym $mod+Control+e exec nautilus
 
 # start rofi program launcher
 bindsym $mod+d exec zsh -c "rofi -show run" 
@@ -189,6 +193,13 @@ bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle -q # mute sound
+
+# Brightness controls
+bindsym XF86MonBrightnessUp   exec ~/scripts/incBright
+bindsym XF86MonBrightnessDown exec ~/scripts/decBright
+
+# Screenshot controls
+bindsym Print exec scrot -e 'xclip -selection clipboard -t image/png -i $f && mv $f ~/Pictures/screenshots/'
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
