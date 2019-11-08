@@ -3,6 +3,6 @@ ln -f .conkyrc ~/.conkyrc
 ln -f .gitconfig ~/.gitconfig
 ln -f i3/config ~/.config/i3/config
 ln -f i3/.i3status.conf ~/.i3status.conf
-ln -fs scripts ~/scripts
+ln -fsrn scripts ~/scripts
 ln -f .zlogout ~/.zlogout
 ln -f .zshrc ~/.zshrc
