@@ -29,6 +29,9 @@ TEXT
   ${if_match "${texeci 3600 curl ifconfig.co/city}"=="Skellefteå"}
     { "full_text" : "Skellefteå ${texeci 300 curl balderskolan.se/vader/international.htm 2>&1 | grep -A1 "Kyleffekt" | grep -v "Kyleffekt" | sed "s/[^0-9.]//g"}°C" },
   ${else}
+  ${if_match "${wireless_ap wlan0}"=="[mac adress]"}
+    { "full_text" : "Skellefteå ${texeci 300 curl balderskolan.se/vader/international.htm 2>&1 | grep -A1 "Kyleffekt" | grep -v "Kyleffekt" | sed "s/[^0-9.]//g"}°C" },
+  ${else}
     { "full_text" : "Unconfigured ${texeci 3600 curl ifconfig.co/city}" },
   ${endif}
   ${endif}
