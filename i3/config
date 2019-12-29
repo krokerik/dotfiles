@@ -92,6 +92,7 @@ assign [class="chromium-browser"] $ws1
 for_window [class="chromium-browser"] move to workspace $ws1
 assign [class="vlc"] $ws2
 assign [class="Thunderbird"] $ws3
+assign [class="Sylpheed"] $ws3
 assign [class="Spotify"] $ws4
 for_window [class="Spotify"] move to workspace $ws4
 # assign [class="Steam"] $ws5
@@ -277,7 +278,8 @@ bar {
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 exec_always feh --bg-scale /home/krokerik/Pictures/AIK.jpg
 exec --no-startup-id nm-applet
-exec --no-startup-id thunderbird
+# exec --no-startup-id thunderbird # thunderbird not working ???
+exec --no-startup-id sylpheed
 exec --no-startup-id chromium-browser
 exec --no-startup-id discord
 exec_always compton -f
