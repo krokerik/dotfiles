@@ -27,10 +27,10 @@ TEXT
     { "full_text" : "Umeå ${texeci 300 perl /opt/umu-temp}°C" , "color" : ${if_match ${texeci 30 perl /opt/umu-temp}<=0} "\#319170"${else}"\#c8c5c1"${endif} },
   ${else}
   ${if_match "${texeci 3600 curl ifconfig.co/city}"=="Skellefteå"}
-    { "full_text" : "Skellefteå ${texeci 300 curl balderskolan.se/vader/international.htm 2>&1 | grep -A1 "Kyleffekt" | grep -v "Kyleffekt" | sed "s/[^0-9.]//g"}°C" },
+    { "full_text" : "Skellefteå ${texeci 300 curl balderskolan.se/vader/international.htm 2>&1 | grep -A1 "Kyleffekt" | grep -v "Kyleffekt" | sed "s/[^0-9.-]//g"}°C" },
   ${else}
   ${if_match "${wireless_ap wlan0}"=="[mac adress]"}
-    { "full_text" : "Skellefteå ${texeci 300 curl balderskolan.se/vader/international.htm 2>&1 | grep -A1 "Kyleffekt" | grep -v "Kyleffekt" | sed "s/[^0-9.]//g"}°C" },
+    { "full_text" : "Skellefteå ${texeci 300 curl balderskolan.se/vader/international.htm 2>&1 | grep -A1 "Kyleffekt" | grep -v "Kyleffekt" | sed "s/[^0-9.-]//g"}°C" },
   ${else}
     { "full_text" : "Unconfigured ${texeci 3600 curl ifconfig.co/city}" },
   ${endif}
